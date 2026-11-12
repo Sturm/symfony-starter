@@ -1,0 +1,24 @@
+parameters:
+    level: max
+    paths:
+        - bin/
+        - config/
+        - public/
+        - src/
+    excludePaths:
+        - config/reference.php
+    # App::config() / Routes::config() are generated into this file on cache warmup
+    scanFiles:
+        - config/reference.php
+    ignoreErrors:
+        # glob() returns false on error; ?: [] is the idiomatic fallback
+        -
+            identifier: ternary.shortNotAllowed
+            path: config/preload.php
+        # Symfony Runtime passes an untyped $context array to the front controller
+        -
+            identifier: argument.type
+            path: public/index.php
+    tmpDir: var/cache/phpstan
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml

@@ -1,0 +1,18 @@
+<?php
+
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
+return App::config([
+    'framework' => [
+        'secret' => '%env(APP_SECRET)%',
+        'session' => true,
+    ],
+    'when@test' => [
+        'framework' => [
+            'test' => true,
+            'session' => [
+                'storage_factory_id' => 'session.storage.factory.mock_file',
+            ],
+        ],
+    ],
+]);
